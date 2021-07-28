@@ -38,19 +38,59 @@
 import h from './core/h'
 import patch from './core/patch'
 const container = document.getElementById('container')
-const vnode = h('div', '测试')
-const newVnode = h('selection', [
+const vnode = h('ul', [
 	h(
-		'ul',
+		'li',
 		{
-			class: 23324,
+			key: 'A',
 		},
-		[1, 2, 3].map((item) => {
-			return h('li', item)
-		})
+		'A'
+	),
+	h(
+		'li',
+		{
+			key: 'B',
+		},
+		'B'
+	),
+	h(
+		'li',
+		{
+			key: 'C',
+		},
+		'C'
 	),
 ])
-console.log(newVnode)
+const newVnode = h('ul', [
+	h(
+		'li',
+		{
+			key: 'A',
+		},
+		'A'
+	),
+	h(
+		'li',
+		{
+			key: 'B',
+		},
+		'B'
+	),
+	h(
+		'li',
+		{
+			key: 'C',
+		},
+		'C'
+	),
+	h(
+		'li',
+		{
+			key: 'D',
+		},
+		'D'
+	),
+])
 patch(container, vnode)
 document.getElementById('btn').onclick = function () {
 	patch(vnode, newVnode)
