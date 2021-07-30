@@ -60,6 +60,13 @@ const vnode = h('ul', [
 		},
 		'C'
 	),
+	h(
+		'li',
+		{
+			key: 'E',
+		},
+		'E'
+	),
 ])
 const newVnode = h('ul', [
 	h(
@@ -68,6 +75,13 @@ const newVnode = h('ul', [
 			key: 'A',
 		},
 		'A'
+	),
+	h(
+		'li',
+		{
+			key: 'E',
+		},
+		'E'
 	),
 	h(
 		'li',
@@ -89,6 +103,13 @@ const newVnode = h('ul', [
 			key: 'D',
 		},
 		'D'
+	),
+	h(
+		'li',
+		{
+			key: 'E',
+		},
+		'E'
 	),
 ])
 patch(container, vnode)
