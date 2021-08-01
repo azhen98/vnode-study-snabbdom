@@ -39,80 +39,20 @@ import h from './core/h'
 import patch from './core/patch'
 const container = document.getElementById('container')
 const vnode = h('ul', [
-	h(
-		'li',
-		{
-			key: 'A',
-		},
-		'A'
-	),
-	h(
-		'li',
-		{
-			key: 'B',
-		},
-		'B'
-	),
-	h(
-		'li',
-		{
-			key: 'C',
-		},
-		'C'
-	),
-	h(
-		'li',
-		{
-			key: 'E',
-		},
-		'E'
-	),
+  h('li', { key: 'A', }, 'A'),
+  h('li', { key: 'B', }, 'B'),
+  h('li', { key: 'C', }, 'C'),
+  h('li', { key: 'D', }, 'D'),
 ])
 const newVnode = h('ul', [
-	h(
-		'li',
-		{
-			key: 'A',
-		},
-		'A'
-	),
-	h(
-		'li',
-		{
-			key: 'E',
-		},
-		'E'
-	),
-	h(
-		'li',
-		{
-			key: 'B',
-		},
-		'B'
-	),
-	h(
-		'li',
-		{
-			key: 'C',
-		},
-		'C'
-	),
-	h(
-		'li',
-		{
-			key: 'D',
-		},
-		'D'
-	),
-	h(
-		'li',
-		{
-			key: 'E',
-		},
-		'E'
-	),
+  h('li', { key: 'C', }, 'C'),
+  h('li', { key: 'B', }, [h('div','etrst')]),
+  h('li', { key: 'A', }, 'A'),
+  h('li', { key: 'D', }, 'D'),
+  h('li', { key: 'E', }, 'E'),
 ])
+console.log(newVnode);
 patch(container, vnode)
 document.getElementById('btn').onclick = function () {
-	patch(vnode, newVnode)
+  patch(vnode, newVnode)
 }

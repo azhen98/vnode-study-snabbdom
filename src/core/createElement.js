@@ -6,6 +6,7 @@ export default function createElement(vnode) {
 	} else if (vnode.children && vnode.children.length > 0) {
 		vnode.children.forEach((element) => {
 			if (element.sel) {
+        console.log('含有字节点==>',element.sel);
 				const subNode = createElement(element)
 				node.appendChild(subNode)
 			} else {

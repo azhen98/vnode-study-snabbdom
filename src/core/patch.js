@@ -17,8 +17,9 @@ export default function (oldVnode, newVnode) {
 		}
 		PatchVnode(oldVnode, newVnode)
 	} else {
-		// 不是同一个节点 直接包暴力删除 插入新的元素
+    // 不是同一个节点 直接包暴力删除 插入新的元素
 		const vNode = createElement(newVnode)
+    console.log('vNode',vNode);
 		oldVnode.elm.parentNode.insertBefore(vNode, oldVnode.elm)
 		oldVnode.elm.parentNode.removeChild(oldVnode.elm)
 	}

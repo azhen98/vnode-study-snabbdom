@@ -8,13 +8,16 @@
  */
 module.exports = {
   devtool: 'eval-source-map',
-	entry: './src/index.js',
-	output: {
+  entry: './src/index.js',
+  output: {
     publicPath: '/xuni/',
-		filename: 'bounde.js'
-	},
-  devServer:{
-    port:8848,
-    contentBase:'www'
+    filename: 'bounde.js'
+  },
+  optimization: { // 1. 这个配置必须
+    minimize: false
+  },
+  devServer: {
+    port: 8848,
+    contentBase: 'www'
   }
 }
