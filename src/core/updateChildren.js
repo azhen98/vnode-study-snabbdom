@@ -19,14 +19,11 @@ export default function updateChildren(parentElm, oldCh = [], newCh = []) {
     let oldEndDom = oldCh[oldEndIndex]
     console.log(newStartDom, oldStartDom, newEndDom, oldEndDom);
     // 如果不存在证明 有可能是已经被匹配过
-    if (!newStartDom) {
-      console.log(2342);
-      newStartIndex++
-    } else if (!oldStartDom) {
+    if (!oldStartDom) {
+      console.log('oldStartDom');
       oldStartIndex++
-    } else if (!newEndDom) {
-      newEndIndex--
     } else if (!oldEndDom) {
+      console.log('oldEndDom');
       oldEndIndex--
     } else if (is.sameNode(newStartDom, oldStartDom)) {
       console.log('命中新前+旧前', newStartDom, oldStartDom);
@@ -61,25 +58,20 @@ export default function updateChildren(parentElm, oldCh = [], newCh = []) {
           indexMap.set(oldCh[index].key, index)
         }
       }
-      // 循环匹配新节点
-      for (let index = newStartIndex; index < newCh.length; index++) {
-        //尝试获取和新前key相同的旧节点
-        const targetIndex = indexMap.get(newCh[index].key)
-        // 不等于null 因为0也是false
-        if (targetIndex != null) {
-          // 找到之后直接 patch
-          patchVnode(oldCh[targetIndex], newCh[index])
-          parentElm.insertBefore(oldCh[targetIndex].elm, oldStartDom.elm)
-          oldCh[targetIndex] = undefined
-          // 找到匹配节点之后才能 移动下标
-          newStartIndex++
-          console.log(newStartIndex, targetIndex, newCh[index]);
-        } else {
-
-          // 没有找到就要生成新的dom节点并且 插入到index对应的位置
-          parentElm.insertBefore(createElement(newCh[index]), oldStartDom.elm)
-        }
+      const targetIndex = indexMap.get(newCh[newStartIndex].key)
+      // 不等于null 因为0也是false
+      if (targetIndex != null) {
+        // 找到之后直接 patch
+        patchVnode(oldCh[targetIndex], newCh[newStartIndex])
+        parentElm.insertBefore(oldCh[targetIndex].elm, oldStartDom.elm)
+        oldCh[targetIndex] = undefined
+        // 找到匹配节点之后才能 移动下标
+        console.log(newStartIndex, targetIndex, newCh[newStartIndex]);
+      } else {
+        // 没有找到就要生成新的dom节点并且 插入到index对应的位置
+        parentElm.insertBefore(createElement(newCh[newStartIndex]), oldStartDom.elm)
       }
+      newStartIndex++
 
     }
 
